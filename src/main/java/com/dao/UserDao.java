@@ -1,6 +1,7 @@
 package com.dao;
 
 
+import com.pojo.User;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
@@ -23,4 +24,10 @@ public interface UserDao {
      */
     String userRegisterCheckName(@Param("userName") String userName);
 
+    /**
+     * 返回一个user对象
+     * @param userName
+     * @return
+     */
+    User user(@Param("username") String userName);
 }

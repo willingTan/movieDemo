@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.dao.FirstPageDao">
+    <resultMap id="BannerResultMap" type="com.pojo.FirstPage.Banner">
+        <result column="name" property="title"></result>
+        <result column="url" property="img"></result>
+    </resultMap>
+    <resultMap id="AllPictures" type="com.pojo.FirstPage.LittleType.Pictures">
+        <result column="name" property="title"></result>
+        <result column="intro" property="littleTitle"></result>
+        <result column="url" property="img"></result>
+    </resultMap>
+
+    <select id="getBanners" resultMap="BannerResultMap">
+        SELECT name,url FROM t_movie LIMIT 10
+    </select>
+
+    <select id="getTodayHotBigNews" resultType="String">
+        SELECT name FROM t_movie WHERE category LIKE '%事件%' LIMIT 2
+    </select>
+
+    <select id="getTodayHotCrumbs" resultType="String">
+        SELECT name FROM t_movie WHERE category LIKE '%事件%' AND click_volume>'50' ORDER BY click_volume DESC LIMIT 2,12
+    </select>
+
+    <select id="getTodayHotBigPic" resultMap="AllPictures">
+        SELECT name,intro,url FROM t_movie WHERE category LIKE '%事件%' LIMIT 15,4
+    </select>
+
+    <select id="getTodayHotPic" resultMap="AllPictures">
+        SELECT name,intro,url FROM t_movie WHERE category LIKE '%事件%' LIMIT 20,8
+    </select>
+
+    <select id="getVarietyBigPic" resultMap="AllPictures">
+        SELECT name,intro,url FROM t_movie WHERE category LIKE '%综艺%' LIMIT 25,2
+    </select>
+
+    <select id="getVarietyPic" resultMap="AllPictures">
+        SELECT name,intro,url FROM t_movie WHERE category LIKE '%综艺%' LIMIT 30,11
+    </select>
+
+    <select id="getVarietyCrumbs" resultType="String">
+        SELECT name FROM t_movie WHERE category LIKE '%综艺%' AND click_volume>'80' ORDER BY click_volume DESC LIMIT 5,5
+    </select>
+
+    <select id="getSelfVarietyPic" resultMap="AllPictures">
+        SELECT name,intro,url FROM t_movie WHERE category LIKE '%综艺%' LIMIT 15,10
+    </select>
+
+    <select id="getSelfVarietyCrumbs" resultType="String">
+        SELECT name FROM t_movie WHERE category LIKE '%综艺%' AND click_volume>'80' ORDER BY click_volume DESC LIMIT 5
+    </select>
+
+    <select id="getTalkShowPic" resultMap="AllPictures">
+        SELECT name,intro,url FROM t_movie WHERE category LIKE '%脱口秀%' LIMIT 15,10
+    </select>
+
+    <select id="getTalkShowCrumbs" resultType="String">
+        SELECT name FROM t_movie WHERE category LIKE '%脱口秀%' AND click_volume>'80' ORDER BY click_volume DESC LIMIT 5
+    </select>
+
+    <select id="getEntertainmentBigPic" resultMap="AllPictures">
+        SELECT name,intro,url FROM t_movie WHERE category LIKE '%节目%' LIMIT 5
+    </select>
+
+    <select id="getEntertainmentPic" resultMap="AllPictures">
+        SELECT name,intro,url FROM t_movie WHERE category LIKE '%节目%' LIMIT 5,10
+    </select>
+
+    <select id="getMoviePic" resultMap="AllPictures">
+        SELECT name,intro,url FROM t_movie WHERE category LIKE '%电影%' LIMIT 5,20
+    </select>
+
+    <select id="getMovieRank" resultType="String">
+        SELECT name FROM t_movie WHERE category LIKE '%电影%' AND click_volume>'80' ORDER BY click_volume DESC LIMIT 10
+    </select>
+
+    <select id="getTVPic" resultMap="AllPictures">
+        SELECT name,intro,url FROM t_movie WHERE category LIKE '%电视剧%' LIMIT 5,20
+    </select>
+
+    <select id="getTVRank" resultType="String">
+        SELECT name FROM t_movie WHERE category LIKE '%电视剧%' AND click_volume>'80' ORDER BY click_volume DESC LIMIT 10
+    </select>
+
+    <select id="getComicBigPic" resultMap="AllPictures">
+        SELECT name,intro,url FROM t_movie WHERE category LIKE '%动漫%' LIMIT 5
+    </select>
+
+    <select id="getComicPic" resultMap="AllPictures">
+        SELECT name,intro,url FROM t_movie WHERE category LIKE '%动漫%' LIMIT 5,15
+    </select>
+
+    <select id="getChildrenBigPic" resultMap="AllPictures">
+        SELECT name,intro,url FROM t_movie WHERE category LIKE '%儿童%' LIMIT 5
+    </select>
+
+    <select id="getChildrenPic" resultMap="AllPictures">
+        SELECT name,intro,url FROM t_movie WHERE category LIKE '%儿童%' LIMIT 5,15
+    </select>
+
+    <select id="getTuijianPic" resultMap="AllPictures">
+        SELECT name,intro,url FROM t_movie WHERE category LIKE '%综艺%' AND click_volume>'80' ORDER BY click_volume DESC LIMIT 1
+    </select>
+
+    <select id="getTuijianTxtlist" resultType="String">
+        SELECT name FROM t_movie WHERE category LIKE '%综艺%' AND click_volume>'80' ORDER BY click_volume DESC LIMIT 10,5
+    </select>
+</mapper>

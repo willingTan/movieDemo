@@ -26,9 +26,7 @@ public class CommonUtil {
 	/**
 	 * @author jipeng
 	 * @return
-	 * 
-	 *         构造返回json
-	 * 
+	 * 构造返回json
 	 */
 	public static JSONObject constructResponse(int code, String msg, Object data) {
 		JSONObject jo = new JSONObject();
